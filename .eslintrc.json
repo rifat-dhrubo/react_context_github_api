@@ -1,0 +1,58 @@
+{
+    "env": {
+        "browser": true,
+        "es6": true,
+        "node": true
+    },
+    "extends": [
+        "airbnb"
+    ],
+    "globals": {
+        "Atomics": "readonly",
+        "SharedArrayBuffer": "readonly"
+    },
+    "parser": "babel-eslint",
+    "parserOptions": {
+        "ecmaFeatures": {
+            "jsx": true
+        },
+        "ecmaVersion": 2018,
+        "sourceType": "module"
+    },
+    "plugins": [
+        "react"
+    ],
+    "rules": {
+        "no-tabs": [
+            "error",
+            {
+                "allowIndentationTabs": true
+            }
+        ],
+        "no-console": "off",
+        "no-unused-vars": "warn",
+        "indent": [
+            "off",
+            "tab"
+        ],
+        "react/jsx-filename-extension": [
+            1,
+            {
+                "extensions": [
+                    ".js",
+                    ".jsx"
+                ]
+            }
+        ],
+        "no-plusplus": ["warn", {
+            "allowForLoopAfterthoughts": true
+        }],
+        "arrow-body-style": ["warn", "always"],
+        "react/jsx-indent": ["off", "tab"],
+        "react/jsx-fragments": ["off"],
+        "react/jsx-indent-props": "off",
+        "import/no-named-as-default": 0,
+        "react/destructuring-assignment": [0, "warn"],
+        "react/state-in-constructor": [0]
+    }
+}
