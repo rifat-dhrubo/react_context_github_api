@@ -2,7 +2,8 @@
 
 ##Live Demo
 
-### `https://react-context-github-api.netlify.com/`
+
+`https://react-context-github-api.netlify.com/`
 
 
 ##Set-up
