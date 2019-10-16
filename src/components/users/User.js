@@ -1,14 +1,16 @@
-/* eslint-disable camelcase */
 /* eslint-disable react/prop-types */
-/* eslint-disable react/prefer-stateless-function */
-import React, { Fragment, useEffect } from 'react';
-import PropTypes from 'prop-types';
+/* eslint-disable camelcase */
+import React, { Fragment, useEffect, useContext } from 'react';
 import { Link } from 'react-router-dom';
+import GithubContext from '../../context/github/githubContext';
 import Repos from '../repos/Repos';
 import Spinner from '../layout/Spinner';
 
-const User = ({ user, loading, getUser, getUserRepos, repos, match }) => {
-    console.log('Logged Output: User -> repos', repos);
+const User = ({ match }) => {
+    const githubContext = useContext(GithubContext);
+    // eslint-disable-next-line
+    const { user, loading, getUser, repos, getUserRepos } = githubContext;
+
     useEffect(() => {
         getUser(match.params.login);
         getUserRepos(match.params.login);
@@ -118,16 +120,6 @@ const User = ({ user, loading, getUser, getUserRepos, repos, match }) => {
             <Repos repos={repos} />
         </Fragment>
     );
-};
-
-User.propTypes = {
-    loading: PropTypes.bool.isRequired,
-    // eslint-disable-next-line react/forbid-prop-types
-    user: PropTypes.object.isRequired,
-    getUser: PropTypes.func.isRequired,
-    getUserRepos: PropTypes.func.isRequired,
-    // eslint-disable-next-line react/forbid-prop-types
-    repos: PropTypes.array.isRequired,
 };
 
 export default User;

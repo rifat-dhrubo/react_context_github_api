@@ -1,23 +1,27 @@
-import React, { useState } from 'react';
-import PropTypes from 'prop-types';
+import React, { useState, useContext } from 'react';
+import GithubContext from '../../context/github/githubContext';
+import AlertContext from '../../context/alert/alertContext';
 
 // eslint-disable-next-line object-curly-newline
-const Search = ({ searchUsers, showClear, clearUsers, setAlert }) => {
+const Search = () => {
+    const githubContext = useContext(GithubContext);
+    const alertContext = useContext(AlertContext);
+
     const [text, setText] = useState('');
 
     const onSubmit = (e) => {
         e.preventDefault();
         if (text === '') {
-            setAlert('Please Enter Something...', 'light');
+            alertContext.setAlert('Please Enter Something...', 'light');
         } else {
-            searchUsers(text);
+            githubContext.searchUsers(text);
             setText('');
         }
     };
 
+    // getting the passed down event and setting the value for it
     const onChange = (e) => {
         setText(e.target.value);
-        // getting the passed down event and setting the value for it
     };
 
     return (
@@ -36,10 +40,10 @@ const Search = ({ searchUsers, showClear, clearUsers, setAlert }) => {
                     className="btn btn-dark btn-block"
                 />
             </form>
-            {showClear && (
+            {githubContext.users.length > 0 && (
                 <button
                     className="btn btn-light btn-block"
-                    onClick={clearUsers}
+                    onClick={githubContext.clearUsers}
                     type="button"
                 >
                     Clear
@@ -47,13 +51,6 @@ const Search = ({ searchUsers, showClear, clearUsers, setAlert }) => {
             )}
         </div>
     );
-};
-
-Search.propTypes = {
-    searchUsers: PropTypes.func.isRequired,
-    clearUsers: PropTypes.func.isRequired,
-    showClear: PropTypes.bool.isRequired,
-    setAlert: PropTypes.func.isRequired,
 };
 
 export default Search;

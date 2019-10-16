@@ -1,5 +1,5 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, { useContext } from 'react';
+import GithubContext from '../../context/github/githubContext';
 import UserItem from './UserItem';
 import Spinner from '../layout/Spinner';
 
@@ -9,7 +9,11 @@ const userStyle = {
     girdGap: '1rem',
 };
 
-const Users = ({ users, loading }) => {
+const Users = () => {
+    const githubContext = useContext(GithubContext);
+
+    const { loading, users } = githubContext;
+
     if (loading) return <Spinner />;
     // eslint-disable-next-line no-else-return
     else {
@@ -22,9 +26,5 @@ const Users = ({ users, loading }) => {
         );
     }
 };
-Users.propTypes = {
-    // eslint-disable-next-line react/forbid-prop-types
-    users: PropTypes.array.isRequired,
-    loading: PropTypes.bool.isRequired,
-};
+
 export default Users;
